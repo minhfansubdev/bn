@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBTD1 X MINHFANSUB | Cyber Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&family=Fira+Code:wght@400;500&display=swap');
+
+        :root {
+            --primary: #ff1e56;
+            --accent: #7000ff;
+            --bg: #030305;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Hiệu ứng nền Mesh Gradient */
+        .mesh-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(at 0% 0%, rgba(255, 30, 86, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(112, 0, 255, 0.1) 0px, transparent 50%);
+            z-index: -1;
+        }
+
+        /* Glassmorphism Card */
+        .main-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hiệu ứng viền chạy sáng */
+        .main-card::after {
+            content: "";
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: border-run 4s linear infinite;
+        }
+
+        @keyframes border-run {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+
+        /* Tách biệt Credit */
+        .credit-badge {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 30, 86, 0.2);
+            font-family: 'Fira Code', monospace;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .credit-badge:hover {
+            border-color: var(--primary);
+            background: rgba(255, 30, 86, 0.05);
+            transform: translateX(10px);
+        }
+
+        /* Nút Download Futuristic */
+        .btn-download {
+            background: linear-gradient(90deg, #ff1e56, #c70039);
+            padding: 24px;
+            border-radius: 20px;
+            font-weight: 900;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(255, 30, 86, 0.3);
+            transition: 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-download:hover {
+            letter-spacing: 8px;
+            box-shadow: 0 15px 45px rgba(255, 30, 86, 0.6);
+            transform: translateY(-5px);
+        }
+
+        .btn-download::before {
+            content: "";
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-download:hover::before {
+            left: 100%;
+        }
+
+        /* Màn hình Splash - CĂN GIỮA TUYỆT ĐỐI */
+        #splash {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 2000;
+            display: flex;
+            align-items: center; /* Căn giữa theo chiều dọc */
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            transition: clip-path 1.2s cubic-bezier(0.8, 0, 0.2, 1);
+            clip-path: circle(150% at 50% 50%);
+        }
+
+        .hide-splash {
+            clip-path: circle(0% at 50% 50%) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mesh-bg"></div>
+
+    <div id="splash">
+        <div class="text-center flex flex-col items-center">
+            <img src="461579946_122176830188204187_7848343558169589186_n-removebg-preview.png" 
+                 class="w-80 h-80 object-contain animate-[pulse_2s_infinite]">
+            <div class="mt-8 overflow-hidden">
+                <p class="text-[12px] tracking-[15px] uppercase text-red-600 animate-bounce ml-[15px]">© Minh Fansub</p>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex items-center justify-center min-h-screen p-6">
+        <div class="main-card max-w-5xl w-full grid grid-cols-1 lg:grid-cols-12">
+            
+            <div class="lg:col-span-5 p-12 lg:p-16 flex flex-col items-center justify-center text-center bg-black/20">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-red-600 blur-[60px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                    <img src="461579946_122176830188204187_7848343558169589186_n-removebg-preview.png" 
+                         class="w-52 h-52 relative z-10 transition-transform duration-700 group-hover:scale-110">
+                </div>
+
+                <div class="mt-10">
+                    <h1 class="text-5xl font-black italic tracking-tighter">
+                        MINH<span class="text-red-600">FANSUB</span>
+                    </h1>
+                    <div class="h-1 w-24 bg-red-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 p-12 lg:p-16 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-4 mb-10">
+                        <i class="fas fa-terminal text-red-600"></i>
+                        <span id="typing" class="font-mono text-sm text-gray-400"></span>
+                    </div>
+
+                    <h2 class="text-5xl lg:text-6xl font-black mb-8 leading-tight tracking-tight uppercase">
+                        Downloading<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-500">BOTNET PACK</span>
+                    </h2>
+
+                    <div class="space-y-4 mb-12">
+                        <div class="credit-badge flex items-center gap-4">
+                            <i class="fas fa-code-branch text-red-500 text-xl"></i>
+                            <div>
+                                <p class="text-[10px] uppercase text-gray-500 font-bold tracking-widest">System Architect</p>
+                                <p class="text-white font-bold">Hệ thống Botnet bởi <span class="text-red-500">pbtd1</span></p>
+                            </div>
+                        </div>
+
+                        <div class="credit-badge flex items-center gap-4">
+                            <i class="fas fa-layer-group text-blue-500 text-xl"></i>
+                            <div>
+                                <p class="text-[10px] uppercase text-gray-500 font-bold tracking-widest">UI/UX Designer</p>
+                                <p class="text-white font-bold">Website được thiết kế bởi <span class="text-red-500">Minh Fansub</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="startDeepDownload()" class="btn-download flex items-center justify-center gap-4">
+                    <span>TẢI XUỐNG</span>
+                    <i class="fas fa-bolt-lightning text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const GITHUB_SOURCE = "https://github.com/minhfansubdev/botnet/raw/refs/heads/main/botnet.rar";
+
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('splash').classList.add('hide-splash');
+                startTypingEffect();
+            }, 3000);
+        };
+
+        function startTypingEffect() {
+            const text = ">> Secure Protocol Established. Ready for deployment...";
+            let i = 0;
+            const target = document.getElementById('typing');
+            const interval = setInterval(() => {
+                target.innerHTML += text.charAt(i);
+                i++;
+                if (i >= text.length) clearInterval(interval);
+            }, 50);
+        }
+
+        function startDeepDownload() {
+            const btn = document.querySelector('.btn-download');
+            btn.innerHTML = "<i class='fas fa-circle-notch animate-spin'></i> Downloading...";
+            btn.style.opacity = "0.7";
+            
+            setTimeout(() => {
+                window.location.href = GITHUB_SOURCE;
+                btn.innerHTML = "REDIRECTING...";
+            }, 1200);
+        }
+    </script>
+</body>
+</html>
